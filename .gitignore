@@ -77,3 +77,4 @@ package-lock.json
 yarn.lock
 .tern-port
 out.js
+.DS_Store

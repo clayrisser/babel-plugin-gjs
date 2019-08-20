@@ -7,15 +7,15 @@ module.exports = () => {
   return {
     visitor: {
       ClassDeclaration(path) {
-        const ast = templateAst(
+        const node = templateAst(
           `const ${path.node.id.name} = GObject.registerClass()`
         );
         if (
           path.parent.type !== 'CallExpression' ||
           path.parent.callee?.property?.name !== 'registerClass'
         ) {
-          ast.declarations[0].init.arguments.push({ ...path.node });
-          path.replaceWith(ast);
+          node.declarations[0].init.arguments.push({ ...path.node });
+          path.replaceWith(node);
         }
       }
     }

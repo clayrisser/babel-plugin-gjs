@@ -1,0 +1,52 @@
+{
+  "name": "babel-plugin-gjs",
+  "version": "0.0.1",
+  "description": "babel plugin for gjs",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "npm run test && babel src -d lib",
+    "clean": "git clean -fXd -e \\!node_modules -e \\!node_modules/**/*",
+    "clean:purge": "git clean -fXd -e \\!node_modules -e \\!node_modules/**/*",
+    "format": "prettier --write ./**/*.{json,md,scss,yaml,yml,js,jsx} --ignore-path .gitignore",
+    "lint": "npm run format && eslint ./",
+    "lint:fix": "npm run format && eslint --fix ./",
+    "prepublish": "npm run build",
+    "test": "npm run lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codejamninja/babel-plugin-gjs.git"
+  },
+  "keywords": [
+    "babel",
+    "preset",
+    "es6",
+    "babel7",
+    "plugin",
+    "proposed"
+  ],
+  "files": [
+    "lib"
+  ],
+  "author": "Jam Risser <jam@codejam.ninja> (https://codejam.ninja)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/codejamninja/babel-plugin-gjs/issues"
+  },
+  "homepage": "https://github.com/codejamninja/babel-plugin-gjs#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-config-prettier": "^4.3.0",
+    "eslint-plugin-import": "^2.17.3",
+    "prettier": "^1.18.2"
+  },
+  "dependencies": {},
+  "eslintIgnore": [
+    "lib"
+  ]
+}

@@ -1,12 +1,13 @@
 {
   "presets": [
     [
-      "@babel/preset-env",
+      "jam",
       {
         "targets": {
           "node": "6"
         }
       }
-    ]
+    ],
+    "everything"
   ]
 }

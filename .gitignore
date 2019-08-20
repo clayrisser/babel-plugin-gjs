@@ -76,3 +76,4 @@ package-lock.json
 /lib
 yarn.lock
 .tern-port
+out.js

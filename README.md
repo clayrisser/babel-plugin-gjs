@@ -10,9 +10,9 @@ Please ★ this repo if you found it useful ★ ★ ★
 
 ## Features
 
-### Wraps classes with `GObject.registerClass`
+#### Wraps classes with `GObject.registerClass`
 
-#### Before
+##### Before
 
 ```js
 const MyWindow = GObject.registerClass(
@@ -31,7 +31,7 @@ const MyWindow = GObject.registerClass(
 );
 ```
 
-#### After
+##### After
 
 ```js
 class MyWindow extends Gtk.Window {

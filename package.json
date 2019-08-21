@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-gjs",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "babel plugin for gjs",
   "main": "lib/index.js",
   "scripts": {

@@ -5,45 +5,39 @@ const options = {};
 
 module.exports = () => ({
   visitor: {
-    Program(path) {
-      path.traverse({
-        ClassDeclaration(path) {
-          const node = templateAst(
-            `const ${path.node.id.name} = GObject.registerClass()`
-          );
-          if (
-            path.parent.type !== 'CallExpression' ||
-            path.parent.callee?.property?.name !== 'registerClass'
-          ) {
-            const identifier = path.scope.generateUidIdentifier(
-              path.node.id.name
-            );
-            node.declarations[0].init.arguments.push(identifier);
-            path.node.id.name = identifier.name;
-            path.insertAfter(node);
-            path.traverse({
-              ClassMethod(path) {
-                if (
-                  path.node.kind === 'constructor' &&
-                  path.node.key.name === 'constructor'
-                ) {
-                  path.node.key.name = '_init';
-                  path.traverse({
-                    ExpressionStatement(path) {
-                      if (path.node.expression?.callee?.type === 'Super') {
-                        const node = templateAst('super._init()');
-                        node.expression.arguments =
-                          path.node.expression.arguments;
-                        path.replaceWith(node);
-                      }
-                    }
-                  });
+    ClassDeclaration(path) {
+      const node = templateAst(
+        `const ${path.node.id.name} = GObject.registerClass()`
+      );
+      if (
+        path.parent.type !== 'CallExpression' ||
+        path.parent.callee?.property?.name !== 'registerClass'
+      ) {
+        const identifier = path.scope.generateUidIdentifier(path.node.id.name);
+        node.declarations[0].init.arguments.push(identifier);
+        path.node.id.name = identifier.name;
+        path.insertAfter(node);
+        path.traverse({
+          ClassMethod(path) {
+            if (
+              path.node.kind === 'constructor' &&
+              path.node.key.name === 'constructor'
+            ) {
+              path.node.kind = 'method';
+              path.node.key.name = '_init';
+              path.traverse({
+                ExpressionStatement(path) {
+                  if (path.node.expression?.callee?.type === 'Super') {
+                    const node = templateAst('super._init()');
+                    node.expression.arguments = path.node.expression.arguments;
+                    path.replaceWith(node);
+                  }
                 }
-              }
-            });
+              });
+            }
           }
-        }
-      });
+        });
+      }
     }
   }
 });

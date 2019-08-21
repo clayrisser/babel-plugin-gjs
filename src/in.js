@@ -1,5 +1,6 @@
-class Hello {
-  constructor() {
+class Hello extends Object {
+  constructor(...props) {
+    super(...props);
     this.cool = 0;
   }
 }

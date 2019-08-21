@@ -10,4 +10,5 @@ const transformedCode = transform(code, {
   ast: false
 }).code;
 
-fs.writeFileSync(`${process.cwd()}/out.js`, transformedCode);
+// eslint-disable-next-line no-console
+console.log(transformedCode);

@@ -13,6 +13,7 @@ Please ★ this repo if you found it useful ★ ★ ★
 ### Wraps classes with `GObject.registerClass`
 
 #### Before
+
 ```js
 const MyWindow = GObject.registerClass(
   class MyWindow extends Gtk.Window {
@@ -31,6 +32,7 @@ const MyWindow = GObject.registerClass(
 ```
 
 #### After
+
 ```js
 class MyWindow extends Gtk.Window {
   constructor() {
@@ -53,6 +55,7 @@ npm install --save-dev babel-plugin-gjs
 ```
 
 _.babelrc_
+
 ```json
 {
   "presets": [
@@ -65,9 +68,7 @@ _.babelrc_
       }
     ]
   ],
-  "plugins": [
-    "gjs"
-  ]
+  "plugins": ["gjs"]
 }
 ```
 

@@ -13,8 +13,10 @@ module.exports = () => ({
         path.parent.type !== 'CallExpression' ||
         path.parent.callee?.property?.name !== 'registerClass'
       ) {
-        node.declarations[0].init.arguments.push({ ...path.node });
-        path.replaceWith(node);
+        const identifier = path.scope.generateUidIdentifier(path.node.id.name);
+        node.declarations[0].init.arguments.push(identifier);
+        path.node.id.name = identifier.name;
+        path.insertAfter(node);
         path.traverse({
           ClassMethod(path) {
             if (

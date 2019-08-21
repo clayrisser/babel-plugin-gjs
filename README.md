@@ -15,6 +15,23 @@ Please ★ this repo if you found it useful ★ ★ ★
 #### Before
 
 ```js
+class MyWindow extends Gtk.Window {
+  constructor() {
+    super({ title: 'Hello World' });
+    this.button = new Gtk.Button({ label: 'Click here' });
+    this.button.connect('clicked', this.handleClicked);
+    this.add(this.button);
+  }
+
+  handleClicked() {
+    console.log('Button clicked');
+  }
+}
+```
+
+#### After
+
+```js
 const MyWindow = GObject.registerClass(
   class MyWindow extends Gtk.Window {
     _init() {
@@ -29,23 +46,6 @@ const MyWindow = GObject.registerClass(
     }
   }
 );
-```
-
-#### After
-
-```js
-class MyWindow extends Gtk.Window {
-  constructor() {
-    super({ title: 'Hello World' });
-    this.button = new Gtk.Button({ label: 'Click here' });
-    this.button.connect('clicked', this.handleClicked);
-    this.add(this.button);
-  }
-
-  handleClicked() {
-    console.log('Button clicked');
-  }
-}
 ```
 
 ## Installation

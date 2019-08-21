@@ -32,6 +32,8 @@ class MyWindow extends Gtk.Window {
 ##### After
 
 ```js
+const GObject = imports.gi.GObject;
+
 const MyWindow = GObject.registerClass(
   class MyWindow extends Gtk.Window {
     _init() {

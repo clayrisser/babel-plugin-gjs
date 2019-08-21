@@ -5,6 +5,12 @@ const options = {};
 
 module.exports = () => ({
   visitor: {
+    Program(path) {
+      if (!path.scope.hasBinding('GObject')) {
+        const node = templateAst('const GObject = imports.gi.GObject');
+        path.node.body.unshift(node);
+      }
+    },
     ClassDeclaration(path) {
       const node = templateAst(
         `const ${path.node.id.name} = GObject.registerClass()`
